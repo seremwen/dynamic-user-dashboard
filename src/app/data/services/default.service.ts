@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, empty, map } from 'rxjs';
+import { PAGEPARAMS, PageRequest, PageResult } from '../models';
 
 
 export class DefaultService<T> {
@@ -14,11 +15,11 @@ export class DefaultService<T> {
       .pipe(catchError(() => empty()));
   }
 
-  // public getPaginated(request?: PageRequest, url?: string): Observable<PageResult<T[]>> {
-  //   if (!url) url = '';
-  //   url += `${PAGEPARAMS(request)}`;
-  //   return this.getFromUrl(url);
-  // }
+  public getPaginated(request?: PageRequest, url?: string): Observable<PageResult<T[]>> {
+    if (!url) url = '';
+    url += `${PAGEPARAMS(request)}`;
+    return this.getFromUrl(url);
+  }
   // public getColourPaginated(request?: PageRequest, url?: string): Observable<PageResult<T[]>> {
   //   if (!url) url = '';
   //   return this.getFromUrl(url);

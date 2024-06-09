@@ -146,7 +146,6 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
   declarations: [],
   imports: [
     CommonModule,
-  
   ]
 })
 export class SharedModule { }

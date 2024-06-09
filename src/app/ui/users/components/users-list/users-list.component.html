@@ -1,1 +1,17 @@
-<p>users-list works!</p>
+<div class="container">
+    <div class="card-container" >
+      <div *ngFor="let user of users" class="card-item" routerLink='/users/user/{{user.id}}'>
+        <nz-card nzHoverable class="user-card" [nzCover]="coverTemplate">
+          <nz-card-meta nzTitle="Firstname: {{user.first_name}}"></nz-card-meta>
+          <nz-card-meta nzTitle="Lastname: {{user.last_name}}"></nz-card-meta>
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="example" src="{{user.avatar}}" />
+        </ng-template>
+      </div>
+    </div>
+    <div class="pagination-container">
+      <nz-pagination [nzPageIndex]="page" (nzPageIndexChange)='load($event)'[nzTotal]="total_items"></nz-pagination>
+    </div>
+  </div>
+  

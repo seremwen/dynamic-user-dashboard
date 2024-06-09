@@ -18,8 +18,9 @@ export class UserService  extends DefaultService<User>{
     return this.getFromUrl(`${this.url}${id}`);
     
   }
-  getUsers(): Observable<User> {
-    return this.getFromUrl(`${this.url}all`);
+  getUsers(page:number): Observable<User> {
+    return this.getFromUrl(`${this.url}?page=${page}`);
     
   }
+ 
 }
