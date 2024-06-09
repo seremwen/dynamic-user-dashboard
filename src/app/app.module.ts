@@ -19,6 +19,7 @@ import { CoreModule } from './core/core.module';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { UiLoader } from './data/models/ui-loader';
 import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
 
 registerLocaleData(en);
 
@@ -38,6 +39,7 @@ registerLocaleData(en);
     NgxUiLoaderModule.forRoot(UiLoader.load()),
     NgxUiLoaderHttpModule,
     CoreModule.forRoot({ environment: environment.baseUrl, production: environment.production }),
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
