@@ -13,6 +13,12 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core/core.module';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { UiLoader } from './data/models/ui-loader';
+import { environment } from '../environments/environment';
 
 registerLocaleData(en);
 
@@ -25,8 +31,13 @@ registerLocaleData(en);
     AppRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
+    LayoutModule,
     NzMenuModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    NgxUiLoaderModule.forRoot(UiLoader.load()),
+    NgxUiLoaderHttpModule,
+    CoreModule.forRoot({ environment: environment.baseUrl, production: environment.production }),
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
