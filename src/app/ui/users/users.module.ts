@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from '../../data/state/users/reducers/user.reducer';
 import { UserEffects } from '../../data/state/users/effects/user.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

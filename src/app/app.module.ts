@@ -10,13 +10,13 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { CoreModule } from './core/core.module';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiLoader } from './data/models/ui-loader';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
@@ -24,6 +24,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from './data/state/users/reducers/user.reducer';
 import { UserEffects, } from './data/state/users/effects/user.effects';
 import { UsersModule } from './ui/users/users.module';
+import { SharedModule } from './shared';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 registerLocaleData(en);
 
@@ -36,12 +38,14 @@ registerLocaleData(en);
     AppRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
-    LayoutModule,
     NzMenuModule,
     FormsModule,
-    RouterModule,
-    NgxUiLoaderModule.forRoot(UiLoader.load()),
-    NgxUiLoaderHttpModule,
+    LayoutModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    // HttpClientModule, // <============ (Perform HTTP requests with this module)
+    NgHttpLoaderModule.forRoot(), // <============ Don't forget to call 'forRoot()'!
+  
     CoreModule.forRoot({ environment: environment.baseUrl, production: environment.production }),
     StoreModule.forRoot({ users: userReducer }),
     EffectsModule.forRoot([UserEffects]),

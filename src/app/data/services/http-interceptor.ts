@@ -22,7 +22,8 @@ export class HTTPListener implements HttpInterceptor {
   constructor(private status: HTTPStatus,
               private notification: NzNotificationService,
 
-              private injector: Injector) {
+              private injector: Injector,
+              ) {
     this.baseUrl = this.injector.get<EnvironmentInterface>(_environment).environment;
   }
 
@@ -31,7 +32,6 @@ export class HTTPListener implements HttpInterceptor {
     const token = this.auth.getToken();
     const request = token ? req.clone({
       url: this.checkUrl(req.url),
-
       setHeaders: { Authorization: `Bearer ${token}` }
     }) : req.clone({ url: this.checkUrl(req.url) });
     return next.handle(request).pipe(
@@ -44,8 +44,8 @@ export class HTTPListener implements HttpInterceptor {
 
   getMessage(err: HttpErrorResponse) {
     if (err.status == 0) return 'This service currently unreachable';
-    if(err.error == 500) return err.error? err.error.narrative ? err.error.narrative : err.error.error_description ? err.error.error_description : err.error.message ? err.error.error : '': '';
-    if(err.status == 404) return err.error? err.error.narrative ? err.error.narrative : err.error.error_description : '';
+     if(err.status == 400) return err.error? err.error.message ? err.error.message : err.error.error_description : '';
+    // if(err.status == 404) return err.error? err.error.narrative ? err.error.narrative : err.error.error_description : '';
     if (err.error) {
       const error = (typeof err.error === 'string' || err.error instanceof String) ?
          JSON.parse(err.error.toString()) : err.error;

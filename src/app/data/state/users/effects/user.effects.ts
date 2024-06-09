@@ -12,7 +12,8 @@ export class UserEffects {
         this.actions$.pipe(
           ofType(UserActions.loadUsers),
           mergeMap(action =>
-            this.http.get<any>(`https://reqres.in/api/users?page=${action.page}`).pipe(
+            this.userService.getUsers(action.page).pipe(
+                
               map(response => UserActions.loadUsersSuccess({
                 users: response.data,
                 page: response.page,
@@ -29,7 +30,7 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(UserActions.loadUser),
       mergeMap(action =>
-        this.http.get<any>(`https://reqres.in/api/users/${action.id}`).pipe(
+        this.userService.getUserById(action.id).pipe(
           map(response => UserActions.loadUserSuccess({ user: response.data })),
           catchError(error => of(UserActions.loadUserFailure({ error })))
         )

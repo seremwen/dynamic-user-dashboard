@@ -8,3 +8,7 @@ export const loadUsersFailure = createAction('[User List] Load Users Failure', p
 export const loadUser = createAction('[User Details] Load User', props<{ id: number }>());
 export const loadUserSuccess = createAction('[User Details] Load User Success', props<{ user: any }>());
 export const loadUserFailure = createAction('[User Details] Load User Failure', props<{ error: any }>());
+
+export const searchUsers = createAction('[User] Search Users', props<{ query: string }>());
+export const searchUsersSuccess = createAction('[User] Search Users Success',props<{ users: any[] }>());
+export const searchUsersFailure = createAction('[User] Search Users Failure',props<{ error: any }>());

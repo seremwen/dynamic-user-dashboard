@@ -24,6 +24,7 @@ export class UsersListComponent implements OnInit {
   page!: number;
   baseUrl!: string;
   users$: Observable<any[]>;
+  searchQuery: string = '';
   metadata$: Observable<{ page: number, per_page: number, total_items: number, total_pages: number }>;
 
   total_items!: number;
@@ -49,4 +50,17 @@ export class UsersListComponent implements OnInit {
   load(page: number): void {
     this.store.dispatch(UserActions.loadUsers({ page }));
   }
+ 
+  searchUsers(query: string): void {
+    this.searchQuery = query.trim();
+    if (this.searchQuery) {
+      console.log('ser');
+      
+      this.store.dispatch(UserActions.searchUsers({ query: this.searchQuery }));
+    } else {
+      // // If search query is empty, load all users
+      this.load(this.page);
+    }
+  }
+  
 }
