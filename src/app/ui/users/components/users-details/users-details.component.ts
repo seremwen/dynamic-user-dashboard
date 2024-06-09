@@ -1,24 +1,28 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User, UserService } from '../../../../data';
-
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { selectSelectedUser } from '../../../../data/state/users/selectors/user.selector';
+import * as UserActions from '../../../../data/state/users/actions/users.actions';
 @Component({
   selector: 'app-users-details',
   templateUrl: './users-details.component.html',
   styleUrl: './users-details.component.css'
 })
 export class UsersDetailsComponent implements OnInit {
-  @Input() id!: number;
-  user: User | any;
-  constructor(private router: ActivatedRoute, private service: UserService,){
-    this.id = this.router.snapshot.params['id'];
+  selectedUser$: Observable<any>;
+
+  constructor(private store: Store, private route: ActivatedRoute) {
+    this.selectedUser$ = this.store.pipe(select(selectSelectedUser));
   }
+
   ngOnInit(): void {
-    this.getAccount();
-  }
-  getAccount(): void {
-    this.service.getUserById(this.id).subscribe((result:any) => {
-      this.user = result.data;
+    this.route.params.subscribe(params => {
+      const userId = params['id'];
+      if (userId) {
+        this.store.dispatch(UserActions.loadUser({ id: userId }));
+      }
     });
   }
 }

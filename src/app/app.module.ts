@@ -20,6 +20,10 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { UiLoader } from './data/models/ui-loader';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { userReducer } from './data/state/users/reducers/user.reducer';
+import { UserEffects, } from './data/state/users/effects/user.effects';
+import { UsersModule } from './ui/users/users.module';
 
 registerLocaleData(en);
 
@@ -39,7 +43,10 @@ registerLocaleData(en);
     NgxUiLoaderModule.forRoot(UiLoader.load()),
     NgxUiLoaderHttpModule,
     CoreModule.forRoot({ environment: environment.baseUrl, production: environment.production }),
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ users: userReducer }),
+    EffectsModule.forRoot([UserEffects]),
+    UsersModule
+  
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

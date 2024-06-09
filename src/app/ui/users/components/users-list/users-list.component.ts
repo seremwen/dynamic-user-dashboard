@@ -6,6 +6,13 @@ import {
   _environment,
 } from '../../../../data';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as UserActions from '../../../../data/state/users/actions/users.actions';
+import {
+  selectAllUsers,
+  selectUserMetadata,
+} from '../../../../data/state/users/selectors/user.selector';
 
 @Component({
   selector: 'app-users-list',
@@ -14,34 +21,32 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class UsersListComponent implements OnInit {
   members!: any;
-  page = 1;
+  page!: number;
   baseUrl!: string;
-  visible!: boolean;
-  users: User | any;
+  users$: Observable<any[]>;
+  metadata$: Observable<{ page: number, per_page: number, total_items: number, total_pages: number }>;
+
   total_items!: number;
   constructor(
+    private store: Store,
     private service: UserService,
-    private injector: Injector,
-    private nzMessageService: NzMessageService
+    private injector: Injector
   ) {
+    this.users$ = this.store.pipe(select(selectAllUsers));
+    this.metadata$ = this.store.pipe(select(selectUserMetadata));
     this.baseUrl =
       this.injector.get<EnvironmentInterface>(_environment).environment;
   }
 
   ngOnInit(): void {
-    this.getUsers();
-  }
-  getUsers() {
-    this.service.getUsers(this.page).subscribe((res: any) => {
-      this.users = res.data;
-      this.total_items = res.total;
+    this.metadata$.subscribe(metadata => {
+      this.page = metadata.page;
+      this.total_items = metadata.total_items;
     });
+    this.load(this.page); // Load initial page
   }
-  load(event?: number) {
-    this.page= this.page+ 1;
-    this.service.getUsers(this.page).subscribe((res: any) => {
-      this.users = res.data;
-      this.total_items = res.total;
-    });
+
+  load(page: number): void {
+    this.store.dispatch(UserActions.loadUsers({ page }));
   }
 }

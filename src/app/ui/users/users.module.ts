@@ -5,6 +5,10 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { UsersDetailsComponent } from './components/users-details/users-details.component';
 import { SharedModule } from '../../shared';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { userReducer } from '../../data/state/users/reducers/user.reducer';
+import { UserEffects } from '../../data/state/users/effects/user.effects';
 
 
 @NgModule({
@@ -15,7 +19,9 @@ import { SharedModule } from '../../shared';
   imports: [
     CommonModule,
     UsersRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('users', userReducer),
+    EffectsModule.forFeature([UserEffects])
   ]
 })
 export class UsersModule { }
