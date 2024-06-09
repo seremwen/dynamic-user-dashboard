@@ -26,17 +26,17 @@ export class UserEffects {
           )
         )
       );
-  loadUser$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UserActions.loadUser),
-      mergeMap(action =>
-        this.userService.getUserById(action.id).pipe(
-          map(response => UserActions.loadUserSuccess({ user: response.data })),
-          catchError(error => of(UserActions.loadUserFailure({ error })))
+      loadUser$ = createEffect(() =>
+        this.actions$.pipe(
+          ofType(UserActions.loadUser),
+          mergeMap(action =>
+            this.userService.getUserById(action.id).pipe(
+              map(response => UserActions.loadUserSuccess({ user: response.data })),
+              catchError(error => of(UserActions.loadUserFailure({ error })))
+            )
+          )
         )
-      )
-    )
-  );
+      );
 
   constructor(private actions$: Actions, private http: HttpClient,private userService:UserService) {}
 }

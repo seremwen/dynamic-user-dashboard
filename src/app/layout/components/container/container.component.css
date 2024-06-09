@@ -1,0 +1,46 @@
+.container {
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 16px; /* Reduced top/bottom gap to 8px and left/right gap to 16px */
+    flex-grow: 1; /* Allow the card container to grow and take available space */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+  }
+  
+  .card-item {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center items vertically within the container */
+  }
+  
+  .user-card {
+    width: 80%; /* Increase width to 80% of the container */
+    max-width: 192px; /* Increase max width to 80% of the original 240px */
+    height: auto; /* Maintain aspect ratio */
+    transition: all 0.3s ease-in-out; /* Optional: Add transition for smooth resizing */
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center; /* Center the pagination component */
+    padding: 10px 0; /* Optional: Add padding for spacing */
+  }
+  
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card-container {
+      grid-template-columns: 1fr; /* 1 item per row on very small screens */
+    }
+  }
+  

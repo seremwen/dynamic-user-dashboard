@@ -1,43 +1,66 @@
 <nz-layout class="app-layout">
-    <nz-sider class="menu-sidebar"
-      nzCollapsible
-      nzWidth="256px"
-      nzBreakpoint="md"
-      [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null">
-      <div class="sidebar-logo">
-        <a href="https://ng.ant.design/" target="_blank">
-          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-          <h1>Dynamic User Dashboard</h1>
-        </a>
-      </div>
-      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-menu-item routerLink='/users/all-users'>
-            <i nz-icon nzType='usergroup-add'></i>
-            <span>Users</span>
-          </li>
-        
-      </ul>
-    </nz-sider>
-    <nz-layout>
-      <nz-header>
-        <input #searchInput nz-input placeholder="Search by ID"  (input)="searchUsers(searchInput.value)"  type="text" />
-        <!-- <div class="app-header">
-          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-              <span class="trigger"
-                 nz-icon
-                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-              ></span>
-          </span>
-         
-
-        </div> -->
+  <nz-sider class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>Dynamic User Dashboard</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item routerLink='/users/all-users'>
+          <i nz-icon nzType='usergroup-add'></i>
+          <span>Users</span>
+        </li>
       
-      </nz-header>
-      <nz-content>
-        <div class="inner-content">
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <input #searchInput nz-input placeholder="Search by ID"  (input)="searchUsers(searchInput.value)"  type="text" />
+   
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <!-- Render searched items here -->
+        <div *ngIf="searchQuery && (users$ | async) as users">
+          <!-- Render searched items -->
+       
+      
+            <div class="card-container" >
+              <div *ngIf="selectedUser$ | async as user" class="card-item" routerLink='/users/user/{{user.id}}'>
+                <nz-card nzHoverable class="user-card" [nzCover]="coverTemplate">
+                  <nz-card-meta nzTitle="Firstname: {{user.first_name}}"></nz-card-meta>
+                  <nz-card-meta nzTitle="Lastname: {{user.last_name}}"></nz-card-meta>
+                </nz-card>
+                <ng-template #coverTemplate>
+                  <img alt="example" src="{{user.avatar}}" />
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- <div *ngFor="let user of users" class="card-item" routerLink='/users/user/{{user.id}}'>
+              <nz-card nzHoverable class="user-card" [nzCover]="coverTemplate">
+                <nz-card-meta nzTitle="Firstname: {{user.first_name}}"></nz-card-meta>
+                <nz-card-meta nzTitle="Lastname: {{user.last_name}}"></nz-card-meta>
+              </nz-card>
+              <ng-template #coverTemplate>
+                <img alt="example" src="{{user.avatar}}" />
+              </ng-template>
+            </div> -->
+       
+        
+        </div>
+        <!-- If no search result, display default content -->
+        <div *ngIf="!(searchQuery && (users$ | async))">
           <router-outlet></router-outlet>
         </div>
-      </nz-content>
-    </nz-layout>
+      </div>
+    </nz-content>
+    
   </nz-layout>
+</nz-layout>

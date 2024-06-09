@@ -28,7 +28,7 @@ import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
       const url = `${this.url}?page=${page}`;
       return this.getCachedData(url);
     }
-  
+ 
     // Get data from cache if available, otherwise fetch from the server and cache the response
     private getCachedData(url: string): Observable<any> {
       if (this.cache[url]) { // Check if data is already cached

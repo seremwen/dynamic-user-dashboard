@@ -40,6 +40,7 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  
     this.metadata$.subscribe(metadata => {
       this.page = metadata.page;
       this.total_items = metadata.total_items;
@@ -51,16 +52,6 @@ export class UsersListComponent implements OnInit {
     this.store.dispatch(UserActions.loadUsers({ page }));
   }
  
-  searchUsers(query: string): void {
-    this.searchQuery = query.trim();
-    if (this.searchQuery) {
-      console.log('ser');
-      
-      this.store.dispatch(UserActions.searchUsers({ query: this.searchQuery }));
-    } else {
-      // // If search query is empty, load all users
-      this.load(this.page);
-    }
-  }
+ 
   
 }

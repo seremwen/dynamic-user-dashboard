@@ -43,9 +43,9 @@ registerLocaleData(en);
     LayoutModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    // HttpClientModule, // <============ (Perform HTTP requests with this module)
-    NgHttpLoaderModule.forRoot(), // <============ Don't forget to call 'forRoot()'!
-  
+   
+    NgxUiLoaderModule.forRoot(UiLoader.load()),
+    NgxUiLoaderHttpModule,
     CoreModule.forRoot({ environment: environment.baseUrl, production: environment.production }),
     StoreModule.forRoot({ users: userReducer }),
     EffectsModule.forRoot([UserEffects]),
