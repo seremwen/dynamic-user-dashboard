@@ -7,7 +7,7 @@ import * as UserActions from '../actions/users.actions';
 import { UserService } from '../../../services';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../shared/components/app.state';
-import { setLoadingSpinner } from '../../../../shared/Shared/shared.actions';
+import { setLoadingSpinner } from '../../../../shared/store/Shared/shared.actions';
 
 @Injectable()
 export class UserEffects {
@@ -40,7 +40,7 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(UserActions.loadUser),
       mergeMap(action => {
-        // Assuming you want to set the spinner on before the API call
+       
         this.store.dispatch(setLoadingSpinner({ status: true }));
         return this.userService.getUserById(action.id).pipe(
           map(response => {

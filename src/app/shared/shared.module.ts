@@ -71,8 +71,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { StoreModule } from '@ngrx/store';
-import { SHARED_STATE_NAME } from './Shared/shared.selector';
-import { sharedReducer } from './Shared/shared.reducer';
+import { SHARED_STATE_NAME } from './store/Shared/shared.selector';
+import { sharedReducer } from './store/Shared/shared.reducer';
 
 
 

@@ -1,6 +1,6 @@
-import {  sharedReducer } from "../Shared/shared.reducer";
-import { SHARED_STATE_NAME } from "../Shared/shared.selector";
-import { SharedState } from "../Shared/shared.state";
+import {  sharedReducer } from "../store/Shared/shared.reducer";
+import { SHARED_STATE_NAME } from "../store/Shared/shared.selector";
+import { SharedState } from "../store/Shared/shared.state";
 
 
 export interface AppState {

@@ -11,7 +11,7 @@ import {
   selectAllUsers,
   selectUserMetadata,
 } from '../../../../data/state/users/selectors/user.selector';
-import { setLoadingSpinner } from '../../../../shared/Shared/shared.actions';
+import { setLoadingSpinner } from '../../../../shared/store/Shared/shared.actions';
 import { AppState } from '../../../../shared/components/app.state';
 
 @Component({
@@ -20,7 +20,7 @@ import { AppState } from '../../../../shared/components/app.state';
   styleUrl: './users-list.component.css',
 })
 export class UsersListComponent implements OnInit {
-  members!: any;
+
   page!: number;
   baseUrl!: string;
   users$: Observable<any[]>;

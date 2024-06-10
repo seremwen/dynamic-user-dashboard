@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getErrorMessage, getLoading } from './shared/Shared/shared.selector';
+import { getErrorMessage, getLoading } from './shared/store/Shared/shared.selector';
 import { UserState } from './data/state/users/reducers/user.reducer';
 import { AppState } from './shared/components/app.state';
 
