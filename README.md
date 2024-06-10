@@ -12,6 +12,8 @@ This is a dynamic user dashboard application built with Angular 17, utilizing NG
 
 You can find the repository [here](https://github.com/seremwen/dynamic-user-dashboard.git).
 
+**Note:** The `master` branch contains the final code.
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -76,3 +78,6 @@ Contributions are welcome! Please create a pull request or open an issue to disc
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```
+
+I hope this addition aligns with what you had in mind!
