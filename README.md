@@ -1,27 +1,78 @@
-# DynamicUserDashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+# Dynamic User Dashboard
 
-## Development server
+[![Angular](https://img.shields.io/badge/Angular-17-red)](https://angular.io/)
+[![NG-ZORRO](https://img.shields.io/badge/NG--ZORRO-Ant%20Design%20of%20Angular-blue)](https://ng.ant.design/)
+[![Ngrx](https://img.shields.io/badge/Ngrx-17-purple)](https://ngrx.io/)
+[![Compodoc](https://img.shields.io/badge/Compodoc-Documentation-green)](https://compodoc.app/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This is a dynamic user dashboard application built with Angular 17, utilizing NG-ZORRO for UI components and Ngrx 17 for state management.
 
-## Code scaffolding
+## Repository
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can find the repository [here](https://github.com/seremwen/dynamic-user-dashboard.git).
 
-## Build
+## Table of Contents
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Generating Documentation](#generating-documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Running unit tests
+## Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository:
 
-## Running end-to-end tests
+    ```sh
+    git clone https://github.com/seremwen/dynamic-user-dashboard.git
+    cd dynamic-user-dashboard
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Install dependencies:
 
-## Further help
+    ```sh
+    npm install
+    ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Running the Application
+
+To run the application, use the following command:
+
+```sh
+ng serve
+```
+
+This will start the development server. Navigate to `http://localhost:4200/` in your browser to view the application.
+
+## Generating Documentation
+
+This project uses Compodoc for generating documentation. To generate and view the documentation, follow these steps:
+
+1. Install Compodoc if you haven't already:
+
+    ```sh
+    npm install -g @compodoc/compodoc
+    ```
+
+2. Generate the documentation:
+
+    ```sh
+    npm run compodoc
+    ```
+
+3. Serve the documentation:
+
+    ```sh
+    npm run compodoc:serve
+    ```
+
+This will generate the documentation and start a server at `http://localhost:8080/` where you can view it.
+
+## Contributing
+
+Contributions are welcome! Please create a pull request or open an issue to discuss what you would like to change.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
