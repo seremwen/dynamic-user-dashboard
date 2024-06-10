@@ -3,7 +3,6 @@ import {
   EnvironmentInterface,
   _environment,
 } from '../../../../data';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import * as UserActions from '../../../../data/state/users/actions/users.actions';
@@ -11,7 +10,6 @@ import {
   selectAllUsers,
   selectUserMetadata,
 } from '../../../../data/state/users/selectors/user.selector';
-import { setLoadingSpinner } from '../../../../shared/store/Shared/shared.actions';
 import { AppState } from '../../../../shared/components/app.state';
 
 @Component({
@@ -49,7 +47,6 @@ export class UsersListComponent implements OnInit {
   }
 
   load(page: number): void {
-    this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(UserActions.loadUsers({ page }));
   }
  
