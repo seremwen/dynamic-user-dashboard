@@ -24,14 +24,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from './data/state/users/reducers/user.reducer';
 import { UserEffects, } from './data/state/users/effects/user.effects';
 import { UsersModule } from './ui/users/users.module';
-import { SharedModule } from './shared';
-import { NgHttpLoaderModule } from 'ng-http-loader';
+
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
+import { appReducer } from './shared/components/app.state';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ registerLocaleData(en);
     NgxUiLoaderModule.forRoot(UiLoader.load()),
     NgxUiLoaderHttpModule,
     CoreModule.forRoot({ environment: environment.baseUrl, production: environment.production }),
-    StoreModule.forRoot({ users: userReducer }),
+    StoreModule.forRoot({ users: userReducer },),
     EffectsModule.forRoot([UserEffects]),
     UsersModule
   

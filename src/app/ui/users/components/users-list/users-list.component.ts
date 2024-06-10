@@ -1,8 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import {
   EnvironmentInterface,
-  User,
-  UserService,
   _environment,
 } from '../../../../data';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -13,6 +11,8 @@ import {
   selectAllUsers,
   selectUserMetadata,
 } from '../../../../data/state/users/selectors/user.selector';
+import { setLoadingSpinner } from '../../../../shared/Shared/shared.actions';
+import { AppState } from '../../../../shared/components/app.state';
 
 @Component({
   selector: 'app-users-list',
@@ -26,14 +26,14 @@ export class UsersListComponent implements OnInit {
   users$: Observable<any[]>;
   searchQuery: string = '';
   metadata$: Observable<{ page: number, per_page: number, total_items: number, total_pages: number }>;
-
+  showLoading!: Observable<boolean>;
   total_items!: number;
   constructor(
-    private store: Store,
-    private service: UserService,
+    private store: Store<AppState>,
     private injector: Injector
   ) {
     this.users$ = this.store.pipe(select(selectAllUsers));
+    
     this.metadata$ = this.store.pipe(select(selectUserMetadata));
     this.baseUrl =
       this.injector.get<EnvironmentInterface>(_environment).environment;
@@ -49,6 +49,7 @@ export class UsersListComponent implements OnInit {
   }
 
   load(page: number): void {
+    this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(UserActions.loadUsers({ page }));
   }
  

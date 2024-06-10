@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserService } from '../../../data';
 import { Store, select } from '@ngrx/store';
 import * as UserActions from '../../../data/state/users/actions/users.actions';
 import { selectSelectedUser } from '../../../data/state/users/selectors/user.selector';

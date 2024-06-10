@@ -69,6 +69,10 @@ import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { StoreModule } from '@ngrx/store';
+import { SHARED_STATE_NAME } from './Shared/shared.selector';
+import { sharedReducer } from './Shared/shared.reducer';
 
 
 
@@ -144,9 +148,12 @@ import { HttpClientModule } from '@angular/common/http';
     NzResizableModule,
     NzPipesModule,
   ],
-  declarations: [],
+  declarations: [
+   
+  ],
   imports: [
     CommonModule,
+    StoreModule.forFeature(SHARED_STATE_NAME, sharedReducer),
   ]
 })
 export class SharedModule { }
